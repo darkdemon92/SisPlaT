@@ -1,0 +1,1 @@
+.\pocketbase_0.5.1.exe serve --http "127.0.0.1:8090"
