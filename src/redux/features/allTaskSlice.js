@@ -7,9 +7,9 @@ export const allTaskSlice = createSlice({
   reducers: {
     modifyTaskList: (state, action) => {
       //console.log(state, action);
-      //const  = action.payload;
-      //console.log(logged);
-      //state.logged = logged;
+      const {tasks} = action.payload;
+      //console.log(tasks);
+      state.tasks = tasks;
     },
   },
 });
