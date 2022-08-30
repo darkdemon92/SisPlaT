@@ -130,8 +130,10 @@ function Menu(props) {
             <ListItemButton
               selected={selectedIndex === 4}
               onClick={() => {
-                client.authStore.clear();
                 dispatch(modifyLoggedIn({ logged: false }));
+                client.authStore.clear();
+                sessionStorage.clear();
+                window.location.reload();
               }}
             >
               <ListItemIcon>

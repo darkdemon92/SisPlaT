@@ -1,6 +1,10 @@
 import "./error404.css";
+import { useNavigate } from "react-router-dom";
+import HomeSharpIcon from "@mui/icons-material/HomeSharp";
+import Button from "@mui/material/Button";
 
 function Error404() {
+  let navigate = useNavigate();
   return (
     <>
     <h1>Error</h1>
@@ -14,6 +18,10 @@ function Error404() {
         </span>
       </section>
       <h1>Page Not Found</h1>
+      <Button variant="outlined" onClick={() => navigate("/", { replace: true })}>
+      <HomeSharpIcon />
+      <span>Regresar...</span>
+      </Button>
     </>
   );
 }
