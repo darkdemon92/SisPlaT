@@ -36,7 +36,7 @@ const GetTasks = () => {
   useEffect(() => {
     async function Tasks() {
       const getAllTasks = await allTasks();
-      dispatch(modifyTaskList({ tasks: getAllTasks }));
+      dispatch(modifyTaskList({ data: getAllTasks }));
     }
     Tasks();
   }, [RealTime]);

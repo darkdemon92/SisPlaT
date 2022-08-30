@@ -81,7 +81,7 @@ const Login = () => {
             try {
               const client = new PocketBase(ServerDB);
               const userData = await client.users.authViaEmail(email, password);
-              dispatch(modifyLoggedIn({ logged: true }));
+              dispatch(modifyLoggedIn({ data: true }));
               navigate("/", { replace: true });
             } catch (error) {
               //console.log(error.message);

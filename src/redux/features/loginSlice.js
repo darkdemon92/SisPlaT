@@ -7,9 +7,10 @@ export const loginSlice = createSlice({
   reducers: {
     modifyLoggedIn: (state, action) => {
       //console.log(state, action);
-      const { logged } = action.payload;
-      //console.log(logged);
-      state.logged = logged;
+      //console.log(state.logged);
+      const { data } = action.payload;
+      //console.log(data);
+      state.logged = data;
     },
   },
 });

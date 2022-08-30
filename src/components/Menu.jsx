@@ -132,7 +132,6 @@ function Menu(props) {
               onClick={() => {
                 dispatch(modifyLoggedIn({ logged: false }));
                 client.authStore.clear();
-                //sessionStorage.clear();
               }}
             >
               <ListItemIcon>
