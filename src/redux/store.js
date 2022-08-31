@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./features/themeSlice";
 import loginReducer from "./features/loginSlice";
 import allTaskReducer from "./features/allTaskSlice";
@@ -16,17 +16,17 @@ const persistConfig = {
   stateReconciler: autoMergeLevel1,
 };
 
-const persistedReducerTheme = persistReducer(persistConfig, themeReducer);
-const persistedReducerLogged = persistReducer(persistConfig, loginReducer);
-const persistedReducerAllTask = persistReducer(persistConfig, allTaskReducer);
+const reducers = combineReducers({
+  theme: themeReducer,
+  userData: loginReducer,
+  allTasks: allTaskReducer
+});
+
+const persistedReducers = persistReducer(persistConfig, reducers);
 
 
 export const store = configureStore({
-  reducer: {
-    theme: persistedReducerTheme,
-    userData: persistedReducerLogged,
-    allTasks: persistedReducerAllTask,
-  },
+  reducer: persistedReducers,
   middleware: [thunk],
 });
 

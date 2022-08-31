@@ -31,18 +31,19 @@ const GetTasks = () => {
   const dispatch = useDispatch();
   const client = new PocketBase(ServerDB);
 
-  const [RealTime, setRealTime] = useState([]);
+  async function Tasks() {
+    const getAllTasks = await allTasks();
+    dispatch(modifyTaskList({ getAllTasks }));
+  }
+  const [RealTime, setRealTime] = useState();
   client.realtime.subscribe("tareas", function (e) {
-    setRealTime([e.record]);
+    //setRealTime([e.record]);
+    //Tasks();
   });
 
   useEffect(() => {
-    async function Tasks() {
-      const getAllTasks = await allTasks();
-      dispatch(modifyTaskList({ data: getAllTasks }));
-    }
     Tasks();
-  }, [RealTime]);
+  }, []);
 
   return (
     <div className="card-grid">

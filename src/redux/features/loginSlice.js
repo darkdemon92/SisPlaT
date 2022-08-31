@@ -8,9 +8,9 @@ export const loginSlice = createSlice({
     modifyUserData: (state, action) => {
       //console.log(state, action);
       //console.log(state.logged);
-      const { userdata, logged } = action.payload;
+      const { user, logged } = action.payload;
       //console.log(action.payload);
-      state.userdata = userdata;
+      state.userdata = user;
       state.logged = logged;
     },
   },
