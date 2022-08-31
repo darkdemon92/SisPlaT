@@ -25,6 +25,9 @@ export const allTasks = async () => {
 
 const GetTasks = () => {
   const { tasks } = useSelector((state) => state.allTasks);
+  const { userdata } = useSelector((state) => state.userData);
+  const { profile } = userdata;
+  //console.log(profile.id);
   const dispatch = useDispatch();
   const client = new PocketBase(ServerDB);
 

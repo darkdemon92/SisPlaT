@@ -9,7 +9,7 @@ export const allTaskSlice = createSlice({
       //console.log(state, action);
       const {data} = action.payload;
       //console.log(JSON.stringify(data));
-      state.tasks = data;
+      //state.tasks = data;
     },
   },
 });
