@@ -1,9 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-let initialState = {userdata:{}, logged: false};
 export const loginSlice = createSlice({
-  name: "Data",
-  initialState,
+  name: "loginData",
+  initialState: {
+    userdata: {}, 
+    logged: false,
+  },
   reducers: {
     modifyUserData: (state, action) => {
       //console.log(state, action);

@@ -27,7 +27,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { modifyTheme } from "../redux/features/themeSlice";
 import { modifyUserData } from "../redux/features/loginSlice";
-import { modifyTaskList } from "../redux/features/allTaskSlice";
+import { modifyTaskList } from "../redux/features/taskSlice";
 
 const drawerWidth = 240;
 
@@ -131,8 +131,8 @@ function Menu(props) {
             <ListItemButton
               selected={selectedIndex === 4}
               onClick={() => {
-                dispatch(modifyUserData({ userdata:{}, logged: false }));
-                dispatch(modifyTaskList({ getAllTasks:{} }));
+                dispatch(modifyUserData({ user: {}, logged: false }));
+                dispatch(modifyTaskList({ getAllTasks:[] }));
                 client.authStore.clear();
               }}
             >

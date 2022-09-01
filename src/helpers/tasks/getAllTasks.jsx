@@ -3,7 +3,7 @@ import ServerDB from "../DB";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { modifyTaskList } from "../../redux/features/allTaskSlice";
+import { TaskList, modifyTaskList } from "../../redux/features/taskSlice";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
@@ -24,21 +24,23 @@ export const allTasks = async () => {
 };
 
 const GetTasks = () => {
-  const { tasks } = useSelector((state) => state.allTasks);
-  const { userdata } = useSelector((state) => state.userData);
+  const { tasks } = useSelector((state) => state.tasks);
+  //console.log(tasks);
+  const { userdata } = useSelector((state) => state.loginData);
   const { profile } = userdata;
   //console.log(profile.id);
   const dispatch = useDispatch();
   const client = new PocketBase(ServerDB);
 
+  const [RealTime, setRealTime] = useState();
   async function Tasks() {
     const getAllTasks = await allTasks();
-    dispatch(modifyTaskList({ getAllTasks }));
+    dispatch(TaskList(getAllTasks));
   }
-  const [RealTime, setRealTime] = useState();
+
   client.realtime.subscribe("tareas", function (e) {
-    //setRealTime([e.record]);
-    //Tasks();
+    //console.table(e.record);
+    dispatch(modifyTaskList(e.record));
   });
 
   useEffect(() => {

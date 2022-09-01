@@ -1,7 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./features/themeSlice";
 import loginReducer from "./features/loginSlice";
-import allTaskReducer from "./features/allTaskSlice";
+import tasksReducer from "./features/taskSlice";
 
 import { persistStore, persistReducer } from "reduxjs-toolkit-persist";
 import storageSession from "reduxjs-toolkit-persist/lib/storage/session";
@@ -18,8 +18,8 @@ const persistConfig = {
 
 const reducers = combineReducers({
   theme: themeReducer,
-  userData: loginReducer,
-  allTasks: allTaskReducer
+  loginData: loginReducer,
+  tasks: tasksReducer
 });
 
 const persistedReducers = persistReducer(persistConfig, reducers);
