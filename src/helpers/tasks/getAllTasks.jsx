@@ -32,18 +32,20 @@ const GetTasks = () => {
   const dispatch = useDispatch();
   const client = new PocketBase(ServerDB);
 
-  const [RealTime, setRealTime] = useState();
-  async function Tasks() {
-    const getAllTasks = await allTasks();
-    dispatch(TaskList(getAllTasks));
-  }
-
+  
   client.realtime.subscribe("tareas", function (e) {
-    //console.table(e.record);
-    dispatch(modifyTaskList(e.record));
+    const actions = e.action;
+    const records = e.record;
+    //console.log(action);
+    //console.log(record);
+    dispatch(modifyTaskList({actions, records}));
   });
-
+  
   useEffect(() => {
+    async function Tasks() {
+      const getAllTasks = await allTasks();
+      dispatch(TaskList(getAllTasks));
+    }
     Tasks();
   }, []);
 
