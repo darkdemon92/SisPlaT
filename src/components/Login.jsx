@@ -13,7 +13,7 @@ import MuiAlert from "@mui/material/Alert";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import { modifyLoggedIn } from "../redux/features/loginSlice";
+import { modifyUserData } from "../redux/features/loginSlice";
 
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
@@ -81,7 +81,9 @@ const Login = () => {
             try {
               const client = new PocketBase(ServerDB);
               const userData = await client.users.authViaEmail(email, password);
-              dispatch(modifyLoggedIn({ logged: true }));
+              const {user} = userData;
+              const logged = true;
+              dispatch(modifyUserData({ user, logged }));
               navigate("/", { replace: true });
             } catch (error) {
               //console.log(error.message);

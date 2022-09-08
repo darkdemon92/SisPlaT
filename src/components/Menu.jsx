@@ -26,7 +26,8 @@ import LogoutSharpIcon from "@mui/icons-material/LogoutSharp";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { modifyTheme } from "../redux/features/themeSlice";
-import { modifyLoggedIn } from "../redux/features/loginSlice";
+import { modifyUserData } from "../redux/features/loginSlice";
+import { modifyTaskList } from "../redux/features/taskSlice";
 
 const drawerWidth = 240;
 
@@ -130,8 +131,9 @@ function Menu(props) {
             <ListItemButton
               selected={selectedIndex === 4}
               onClick={() => {
+                dispatch(modifyUserData({ user: {}, logged: false }));
+                dispatch(modifyTaskList({ getAllTasks:[] }));
                 client.authStore.clear();
-                dispatch(modifyLoggedIn({ logged: false }));
               }}
             >
               <ListItemIcon>

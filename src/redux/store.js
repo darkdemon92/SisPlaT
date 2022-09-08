@@ -1,26 +1,32 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import themeReducer from "./features/themeSlice";
-import loginReducer from "./features/loginSlice"
+import loginReducer from "./features/loginSlice";
+import tasksReducer from "./features/taskSlice";
 
 import { persistStore, persistReducer } from "reduxjs-toolkit-persist";
 import storageSession from "reduxjs-toolkit-persist/lib/storage/session";
+import storage from "reduxjs-toolkit-persist/lib/storage";
 import autoMergeLevel1 from "reduxjs-toolkit-persist/lib/stateReconciler/autoMergeLevel1";
 import thunk from "redux-thunk";
 
 const persistConfig = {
   key: "root",
-  storage: storageSession,
+  //storage: storageSession,
+  storage,
   stateReconciler: autoMergeLevel1,
 };
 
-const persistedReducerTheme = persistReducer(persistConfig, themeReducer);
-const persistedReducerLogged = persistReducer(persistConfig, loginReducer);
+const reducers = combineReducers({
+  theme: themeReducer,
+  loginData: loginReducer,
+  tasks: tasksReducer
+});
+
+const persistedReducers = persistReducer(persistConfig, reducers);
+
 
 export const store = configureStore({
-  reducer: {
-    theme: persistedReducerTheme,
-    logged: persistedReducerLogged,
-  },
+  reducer: persistedReducers,
   middleware: [thunk],
 });
 
