@@ -17,7 +17,7 @@ export const TaskSlice = createSlice({
       //console.log(state, action);
       //console.log(action.payload);
       const { actions, records } = action.payload;
-      console.log(actions, records);
+      //console.log(actions, records);
       if (actions === "update") {
         const taskFound = state.tasks.find((task) => task.id === records.id);
         //console.log(taskFound);

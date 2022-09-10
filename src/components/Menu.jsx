@@ -6,7 +6,8 @@ import Divider from "@mui/material/Divider";
 import Chip from "@mui/material/Chip";
 import Drawer from "@mui/material/Drawer";
 import IconButton from "@mui/material/IconButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
+import URL_DIR from "../routes/URL_DIR";
 
 import Fab from "@mui/material/Fab";
 import MenuBookSharpIcon from "@mui/icons-material/MenuBookSharp";
@@ -72,7 +73,7 @@ function Menu(props) {
       <Divider />
       <List>
         <NavLink
-          to="/"
+          to={URL_DIR}
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           end
         >
@@ -89,7 +90,7 @@ function Menu(props) {
           </ListItem>
         </NavLink>
         <NavLink
-          to="/PCs"
+          to={URL_DIR + "/PCs"}
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           end
         >
@@ -106,7 +107,7 @@ function Menu(props) {
           </ListItem>
         </NavLink>
         <NavLink
-          to="/Monitores"
+          to={URL_DIR + "/Monitores"}
           style={({ isActive }) => (isActive ? activeStyle : inactiveStyle)}
           end
         >
@@ -134,6 +135,7 @@ function Menu(props) {
                 dispatch(modifyUserData({ user: {}, logged: false }));
                 dispatch(modifyTaskList({ getAllTasks:[] }));
                 client.authStore.clear();
+                <Navigate to={URL_DIR + "/login"} replace={true} />
               }}
             >
               <ListItemIcon>
